@@ -1,0 +1,55 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://grama.png" type="Texture" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 15.9415, 15.9277 )
+
+[node name="tile_grama" type="Node"]
+
+[node name="grama0" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 0, 32, 32 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="StaticBody2D" type="StaticBody2D" parent="grama0"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="grama0/StaticBody2D"]
+position = Vector2( 16, 16 )
+shape = SubResource( 1 )
+
+[node name="grama1" type="Sprite" parent="."]
+position = Vector2( 31.1578, 0 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 32, 0, 32, 32 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="StaticBody2D" type="StaticBody2D" parent="grama1"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="grama1/StaticBody2D"]
+position = Vector2( 16, 16 )
+shape = SubResource( 1 )
+
+[node name="grama2" type="Sprite" parent="."]
+position = Vector2( 63, 0 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 64, 0, 32, 32 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="StaticBody2D" type="StaticBody2D" parent="grama2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="grama2/StaticBody2D"]
+position = Vector2( 16, 16 )
+shape = SubResource( 1 )

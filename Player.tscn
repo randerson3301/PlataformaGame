@@ -1,0 +1,79 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://Player.gd" type="Script" id=1]
+[ext_resource path="res://Player/Run7.png" type="Texture" id=2]
+[ext_resource path="res://Player/Idle0.png" type="Texture" id=3]
+[ext_resource path="res://Player/Jump0.png" type="Texture" id=4]
+[ext_resource path="res://Player/Run2.png" type="Texture" id=5]
+[ext_resource path="res://Player/Run3.png" type="Texture" id=6]
+[ext_resource path="res://Player/Run0.png" type="Texture" id=7]
+[ext_resource path="res://Player/Run1.png" type="Texture" id=8]
+[ext_resource path="res://Player/Run4.png" type="Texture" id=9]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 3 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 4 ) ],
+"loop": true,
+"name": "jump",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 7 ), ExtResource( 8 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 9 ), ExtResource( 2 ) ],
+"loop": true,
+"name": "run",
+"speed": 10.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 10, 25 )
+
+[sub_resource type="RectangleShape2D" id=3]
+
+[sub_resource type="RectangleShape2D" id=5]
+
+[node name="Player" type="KinematicBody2D"]
+position = Vector2( 256, 256 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="AnimatedSprite" parent="."]
+position = Vector2( 0.262848, 0.312759 )
+frames = SubResource( 1 )
+animation = "idle"
+
+[node name="shape" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 3 )
+scale = Vector2( 1.5, 1.1 )
+shape = SubResource( 4 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+zoom = Vector2( 0.7, 0.7 )
+limit_top = -250
+limit_bottom = 1000
+
+[node name="feet" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="feet"]
+position = Vector2( 0.5, 31.9 )
+scale = Vector2( 1.65, 0.06 )
+shape = SubResource( 3 )
+
+[node name="dano" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="dano"]
+position = Vector2( 0, 2 )
+scale = Vector2( 1.52, 2.8 )
+shape = SubResource( 5 )
+[connection signal="body_entered" from="feet" to="." method="_on_feet_body_entered"]
+[connection signal="body_entered" from="dano" to="." method="_on_dano_body_entered"]
